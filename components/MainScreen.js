@@ -27,7 +27,7 @@ class MainScreen extends Component {
         options={{
           tabBarPosition: 'bottom',
       }}>
-        <Tab.Screen name="Moments" component={MomentsDetailedView}
+        <Tab.Screen name="MomentsDetailed" component={MomentsDetailedView}
           options={{
             headerShown: false,
             tabBarShowLabel: false,
@@ -39,7 +39,7 @@ class MainScreen extends Component {
           listeners={({ navigation }) => ({
             tabPress: event => {
               event.preventDefault();
-              navigation.navigate("UploadMoment")
+              navigation.navigate("Upload Moment")
             }
           })}
           options={{
@@ -49,9 +49,9 @@ class MainScreen extends Component {
               <MaterialCommunityIcons name="plus-box" color={'grey'} size={26}/>
             ),
         }}/>
-        <Tab.Screen name="Card Moments" component={CardMoments}
+        <Tab.Screen name="Moments" component={CardMoments}
         options={{
-          headerShown: false,
+          // headerShown: false,
           tabBarShowLabel: false,
           tabBarButton: () => null,
         }}/>

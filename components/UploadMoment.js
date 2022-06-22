@@ -50,11 +50,11 @@ const UploadMoment = () => {
           placeholder="date"
           style={styles.date}
         /> */}
-        <Text
+        {/* <Text
         style={{textAlign: 'center', flex:4, fontFamily:'AnticDidone-Regular', fontSize: 25, paddingTop:5 }}
-        > new moment </Text>
+        > new moment </Text> */}
         <View
-        style={{flex: 4, paddingRight: 20}}
+        style={{flex: 4, paddingRight: 20, justifyContent:'center'}}
         >
           <DateTimePicker
             testID="dateTimePicker"
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     flex: 1,
-    paddingTop: 90,
+    paddingTop: 10,
   },
   dateContainer: {
     flex: 1,
@@ -118,9 +118,9 @@ const styles = StyleSheet.create({
     // borderWidth:'0.25',
     // borderRightWidth: 0,
     // borderLeftWidth: 0,
-    height: 20,
+    // height: 20,
     justifyContent: 'space-between',
-    paddingTop: 20
+    // paddingTop: 20
   },
   date: {
     fontFamily: "AnticDidone-Regular",

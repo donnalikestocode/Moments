@@ -110,14 +110,14 @@ const renderImages = ({ image }) => {
   return moments.map(( moment, index ) => {
     return(
       <View>
-        <View style={{flex: 1, paddingTop: 40,paddingBottom: 10}}>
+        <View style={{flex: 1, paddingTop: 0,paddingBottom: 10}}>
           <View style={{borderTopWidth: 0.25, borderBottomWidth: 0.25, padding: 5, paddingLeft: 10}}>
             <Text style ={{textAlign:'left', fontFamily: "AnticDidone-Regular", fontSize: 20}}>
               {moment.date}
             </Text>
           </View>
         </View>
-        <View key={index} style={[{ width: (width) }, {height: (height)/2 },
+        <View key={index} style={[{ width: (width) }, {height: (height)/2.5 },
         // {padding: 2}
         ]}>
             <Image style={{
@@ -131,7 +131,7 @@ const renderImages = ({ image }) => {
               source = {moment.image}
             />
         </View>
-        <View style={{flex: 3, paddingTop: 10, paddingLeft: 40, paddingRight: 40}}>
+        <View style={{flex: 3, paddingTop: 10, paddingLeft: 40, paddingRight: 40, paddingBottom: 30}}>
           <Text style ={{textAlign:'center', fontSize: 10}}> {moment.caption} </Text>
         </View>
       </View>
@@ -152,7 +152,7 @@ const CardMoments = ({ route, navigation }) => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
             alignItems: 'stretch',
-            paddingTop: 60,
+            paddingTop: 0,
             paddingBottom: 40,
             paddingStart: 0,
             paddingEnd: 0,

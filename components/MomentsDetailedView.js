@@ -129,7 +129,7 @@ const renderImages = ({ navigation }) => {
         <View key={index} style={[{ width: (width) / 3.08 }, {height: (width) / 3.08 },
         {padding: 2}
         ]}>
-          <TouchableWithoutFeedback onPress={() => navigation.navigate('Card Moments', moment)}>
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('Moments', moment)}>
             <Image style={{
               flex: 1,
               alignSelf: 'stretch',
