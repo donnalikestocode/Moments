@@ -149,11 +149,11 @@ const CardMoments = ({ route, navigation }) => {
         </View> */}
         <ScrollView
           vertical={true}
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={true}
           contentContainerStyle={{
             alignItems: 'stretch',
             paddingTop: 0,
-            paddingBottom: 40,
+            paddingBottom: 7,
             paddingStart: 0,
             paddingEnd: 0,
           }}
