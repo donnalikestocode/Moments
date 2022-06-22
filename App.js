@@ -1,12 +1,39 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import UploadMoment from './components/UploadMoment.js'
+import { NativeBaseProvider } from 'native-base';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+const Stack = createNativeStackNavigator();
+
+import MainScreen from './components/MainScreen.js'
+import UploadMoment from './components/UploadMoment.js';
+import MomentsDetailedView from './components/MomentsDetailedView.js';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <UploadMoment/>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Main" >
+        <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false}} />
+        <Stack.Screen name="UploadMoment" component={UploadMoment}  />
+      </Stack.Navigator>
+    </NavigationContainer>
+    // <AppStackNavigator />
+    // <NativeBaseProvider>
+    //   <View style={styles.container}>
+    //     <StatusBar style="auto" />
+    //     {/* <UploadMoment/> */}
+    //     <MomentsDetailedView/>
+    //   </View>
+    // </NativeBaseProvider>
+  );
+}
+
+function HomeScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Home Screen</Text>
     </View>
   );
 }
