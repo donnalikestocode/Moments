@@ -5,7 +5,7 @@ import {
    Button,
    StyleSheet,
    Text,
-   TouchableOpacity,
+   TouchableWithoutFeedback,
    Dimensions,
    Image,
    ScrollView,
@@ -14,7 +14,7 @@ import {
 import { useFonts } from 'expo-font';
 // import AppLoading from 'expo-app-loading';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import CardMoments from './CardMoments.js'
+
 
 var images = [
   require('../assets/pictures/1.jpg'),
@@ -36,6 +36,46 @@ var images = [
 
 var moments = [
   {
+    image: images[0],
+    date: 'September 27, 2021',
+    caption: 'Had some time to read one of my favorite books'
+  },
+  {
+    image: images[1],
+    date: 'September 27, 2021',
+    caption: 'binged Run BTS '
+  },
+  {
+    image: images[2],
+    date: 'September 27, 2021',
+    caption: 'spent time on myself'
+  },
+  {
+    image: images[3],
+    date: 'September 27, 2021',
+    caption: 'Leles bday :3'
+  },
+  {
+    image: images[4],
+    date: 'September 27, 2021',
+    caption: 'love being on vacation and not doing anything (: '
+  },
+  {
+    image: images[5],
+    date: 'September 27, 2021',
+    caption: 'our beautiful florence airbnb'
+  },
+  {
+    image: images[6],
+    date: 'September 27, 2021',
+    caption: 'Christmas at Julisas!'
+  },
+  {
+    image: images[7],
+    date: 'September 27, 2021',
+    caption: 'Beautiful day in LA'
+  },
+  {
     image: images[8],
     date: 'September 27, 2021',
     caption: 'I got to enjoy a nice picnic in anaheim with Perry today :) I painted under the sun'
@@ -44,6 +84,31 @@ var moments = [
     image: images[9],
     date: 'September 21, 2021',
     caption: 'first time in Taiwan!'
+  },
+  {
+    image: images[10],
+    date: 'September 21, 2021',
+    caption: 'first time in Hong Kong!'
+  },
+  {
+    image: images[11],
+    date: 'September 21, 2021',
+    caption: 'Had ice cream with Maggie and Leanna :) '
+  },
+  {
+    image: images[12],
+    date: 'September 21, 2021',
+    caption: 'Kayaked in Brooklyn :3'
+  },
+  {
+    image: images[13],
+    date: 'September 21, 2021',
+    caption: 'first time in Taiwan!'
+  },
+  {
+    image: images[14],
+    date: 'September 21, 2021',
+    caption: 'I miss Steve and Karrie!'
   }
 ]
 
@@ -59,21 +124,23 @@ const renderImages = ({ navigation }) => {
   //   return <AppLoading />;
   // }
 
-  return images.map(( image, index ) => {
+  return moments.map(( moment, index ) => {
     return(
         <View key={index} style={[{ width: (width) / 3.08 }, {height: (width) / 3.08 },
         {padding: 2}
         ]}>
-          <Image style={{
-            flex: 1,
-            alignSelf: 'stretch',
-            width: undefined,
-            height: undefined,
-            borderWidth: 0.5,
-            opacity: 0.8
-          }}
-            source = {image}
-          />
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('Card Moments', moment)}>
+            <Image style={{
+              flex: 1,
+              alignSelf: 'stretch',
+              width: undefined,
+              height: undefined,
+              borderWidth: 0.5,
+              opacity: 0.8
+            }}
+              source = {moment.image}
+            />
+          </TouchableWithoutFeedback>
         </View>
     )
   })
@@ -90,7 +157,7 @@ const MomentsDetailedView = ({navigation}) => {
       </View>
       <View style={{flex: 4}}>
         <ScrollView
-          veritcal={true}
+          vertical={true}
           showsVerticalScrollIndicator={true}
           contentContainerStyle={{
               alignItems: 'center',
@@ -103,7 +170,6 @@ const MomentsDetailedView = ({navigation}) => {
               {renderImages({navigation})}
             </View>
           </View>
-        {/* </View> */}
         </ScrollView>
       </View>
       </View>
