@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Text, View, Image, Dimensions, ScrollView } from 'react-native';
 import { useFonts } from 'expo-font';
 import axios from 'axios';
@@ -108,9 +108,9 @@ const renderImages = ({ image }) => {
     'AnticDidone-Regular' : require ('../assets/fonts/AnticDidone-Regular.ttf')
   });
 
-  return moments.map(( moment, index ) => {
+  return moments.map(( moment, index, moments ) => {
     return(
-      <View>
+      <View key={index}>
         <View style={{flex: 1, paddingTop: 0,paddingBottom: 10}}>
           <View style={{borderTopWidth: 0.25, borderBottomWidth: 0.25, padding: 5, paddingLeft: 10}}>
             <Text style ={{textAlign:'left', fontFamily: "AnticDidone-Regular", fontSize: 20}}>
@@ -118,7 +118,7 @@ const renderImages = ({ image }) => {
             </Text>
           </View>
         </View>
-        <View key={index} style={[{ width: (width) }, {height: (height)/2.5 },
+        <View style={[{ width: (width) }, {height: (height)/2.5 },
         // {padding: 2}
         ]}>
             <Image style={{

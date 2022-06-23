@@ -5,7 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
 
-const UploadMoment = () => {
+const UploadMoment = ({navigation}) => {
   const [text, setText] = useState("");
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
@@ -17,7 +17,7 @@ const UploadMoment = () => {
   });
 
   const onChangeText = (event) => {
-    console.log('text', event);
+    // console.log('text', event);
     setText(event);
   }
 
@@ -62,9 +62,10 @@ const UploadMoment = () => {
       date: date,
       caption: text
     }
-    axios.post('http://localhost:3000/moments', post)
+    axios.post('http://localhost:3000/moment', post)
       .then((response) => {
         console.log('new post has been added')
+        navigation.navigate('MomentsDetailed')
       })
       .catch((error) => {
         console.log('unable to log post', error)
@@ -105,6 +106,7 @@ const UploadMoment = () => {
           onChangeText={onChangeText}
           value={text}
           placeholder="add text"
+          multiline={true}
         />
       </View>
       <View
@@ -117,12 +119,12 @@ const UploadMoment = () => {
               style={styles.barbutton}>add</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <View>
             <Text
               style={styles.barbutton}>cancel</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
    </View>
   )

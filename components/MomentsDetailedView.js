@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   TextInput,
@@ -14,6 +14,7 @@ import {
 import { useFonts } from 'expo-font';
 // import AppLoading from 'expo-app-loading';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import axios from 'axios';
 
 
 var images = [
@@ -34,7 +35,7 @@ var images = [
   require('../assets/pictures/15.jpg')
 ]
 
-var moments = [
+var momentsExample = [
   {
     image: images[0],
     date: 'September 27, 2021',
@@ -116,6 +117,25 @@ var {width, height} = Dimensions.get('window')
 
 const renderImages = ({ navigation }) => {
 
+  const [moments, setMoments] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/moments')
+      .then((response) => {
+        let momentsArr = [];
+        // console.log('response', response.data);
+        for (let i = 0; i < response.data.length; i++) {
+          momentsArr.push(response.data[i])
+        }
+        // console.log('momentsArr', momentsArr);
+        setMoments(momentsArr);
+        return;
+      })
+      .catch((error) => {
+        console.log('could not get moments')
+      })
+  },[moments]);
+
   let [fontsLoaded] = useFonts({
     'AnticDidone-Regular' : require ('../assets/fonts/AnticDidone-Regular.ttf')
   });
@@ -125,6 +145,7 @@ const renderImages = ({ navigation }) => {
   // }
 
   return moments.map(( moment, index ) => {
+    // console.log('moment', moment)
     return(
         <View key={index} style={[{ width: (width) / 3.08 }, {height: (width) / 3.08 },
         {padding: 2}
@@ -138,7 +159,7 @@ const renderImages = ({ navigation }) => {
               borderWidth: 0.5,
               opacity: 0.8
             }}
-              source = {moment.image}
+              source = {{uri: moment.image}}
             />
           </TouchableWithoutFeedback>
         </View>
