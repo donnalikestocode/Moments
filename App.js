@@ -10,7 +10,6 @@ const Stack = createNativeStackNavigator();
 import MainScreen from './components/MainScreen.js'
 import UploadMoment from './components/UploadMoment.js';
 import MomentsDetailedView from './components/MomentsDetailedView.js';
-// import CardMoments from './components/CardMoments.js'
 
 export default function App() {
   return (
@@ -18,17 +17,8 @@ export default function App() {
       <Stack.Navigator initialRouteName="Main"  >
         <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false}} />
         <Stack.Screen name="Upload Moment" component={UploadMoment}  />
-        {/* <Stack.Screen name="Card Moments" component={CardMoments} /> */}
       </Stack.Navigator>
     </NavigationContainer>
-  );
-}
-
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-    </View>
   );
 }
 

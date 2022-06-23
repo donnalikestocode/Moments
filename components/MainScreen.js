@@ -20,6 +20,7 @@ const EmptyScreen = () => {
 import MomentsDetailedView from './MomentsDetailedView.js';
 import CardMoments from './CardMoments.js'
 import Homepage from './Homepage.js'
+import Entries from './Entries.js'
 
 class MainScreen extends Component {
   render() {
@@ -28,6 +29,14 @@ class MainScreen extends Component {
         options={{
           tabBarPosition: 'bottom',
       }}>
+        <Tab.Screen name="Entries" component={Entries}
+          options={{
+            headerShown: false,
+            tabBarShowLabel: false,
+            tabBarIcon: ({ color, size}) => (
+              <MaterialCommunityIcons name="account-heart" color={'grey'} size={26}/>
+            ),
+        }}/>
         <Tab.Screen name="Homepage" component={Homepage}
           options={{
             headerShown: false,

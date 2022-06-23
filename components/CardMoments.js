@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Image, Dimensions, ScrollView } from 'react-native';
 import { useFonts } from 'expo-font';
+import axios from 'axios';
 
 var images = [
   require('../assets/pictures/1.jpg'),
@@ -125,8 +126,6 @@ const renderImages = ({ image }) => {
               alignSelf: 'stretch',
               width: width,
               height: undefined,
-              // borderWidth: 0.5,
-              // opacity: 0.8
             }}
               source = {moment.image}
             />
@@ -144,9 +143,6 @@ const CardMoments = ({ route, navigation }) => {
   const { image, date, caption } = route.params;
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        {/* <View style={{flex: 1, paddingTop: 40}}>
-          <Text> {date} </Text>
-        </View> */}
         <ScrollView
           vertical={true}
           showsVerticalScrollIndicator={true}
@@ -163,18 +159,6 @@ const CardMoments = ({ route, navigation }) => {
               {renderImages({image, date, caption})}
             </View>
           </View>
-          {/* <View style={{flex: 2}}>
-            <Image
-            style={{
-            flex: 2,
-            alignSelf: 'stretch',
-            width: width,
-            height: height,
-            borderWidth: 0.25,
-          }}
-            source = { image }
-            /> */}
-          {/* </View> */}
         </ScrollView>
     </View>
   );

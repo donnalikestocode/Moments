@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
-import {View, TextInput, Button, StyleSheet, Text, TouchableOpacity} from 'react-native';
-// import AppLoading from 'expo-app-loading';
+import {View, TextInput, Button, StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
 import { useFonts } from 'expo-font';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import * as ImagePicker from 'expo-image-picker';
+import axios from 'axios';
 
 const UploadMoment = () => {
-  const [text, onChangeText] = useState("");
-  // const [newDate, onChangeDate] = useState("");
-
+  const [text, setText] = useState("");
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
+  const [image, setImage] = useState(null);
 
   let [fontsLoaded] = useFonts({
     'AnticDidone-Regular' : require ('../assets/fonts/AnticDidone-Regular.ttf')
   });
 
-  // if (!fontsLoaded) {
-  //   return <AppLoading />;
-  // }
+  const onChangeText = (event) => {
+    console.log('text', event);
+    setText(event);
+  }
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
+    console.log('currentDate', currentDate)
     setShow(false);
     setDate(currentDate);
   };
@@ -39,20 +41,41 @@ const UploadMoment = () => {
     showMode('time');
   };
 
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
+  const addPost = () => {
+    let post = {
+      image: image,
+      date: date,
+      caption: text
+    }
+    axios.post('http://localhost:3000/moments', post)
+      .then((response) => {
+        console.log('new post has been added')
+      })
+      .catch((error) => {
+        console.log('unable to log post', error)
+      })
+  }
+
   return (
     <View
       style={styles.container}>
       <View
        style={styles.dateContainer}>
-        {/* <TextInput
-          onChangeText={onChangeDate}
-          value={newDate}
-          placeholder="date"
-          style={styles.date}
-        /> */}
-        {/* <Text
-        style={{textAlign: 'center', flex:4, fontFamily:'AnticDidone-Regular', fontSize: 25, paddingTop:5 }}
-        > new moment </Text> */}
         <View
         style={{flex: 4, paddingRight: 20, justifyContent:'center'}}
         >
@@ -67,8 +90,10 @@ const UploadMoment = () => {
       </View>
       <TouchableOpacity
       style={styles.buttonContainer}
+      onPress={pickImage}
       >
         <View>
+          {image && <Image source={{ uri: image }} style={{ width: 400, height: 300 }} />}
           <Text
             style={styles.button}>upload image</Text>
         </View>
@@ -84,7 +109,9 @@ const UploadMoment = () => {
       </View>
       <View
         style={styles.bar} >
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress={addPost}
+        >
           <View>
             <Text
               style={styles.barbutton}>add</Text>
@@ -115,12 +142,7 @@ const styles = StyleSheet.create({
   dateContainer: {
     flex: 1,
     flexDirection: "row",
-    // borderWidth:'0.25',
-    // borderRightWidth: 0,
-    // borderLeftWidth: 0,
-    // height: 20,
     justifyContent: 'space-between',
-    // paddingTop: 20
   },
   date: {
     fontFamily: "AnticDidone-Regular",
@@ -138,14 +160,12 @@ const styles = StyleSheet.create({
   },
   button: {
     fontFamily: "AnticDidone-Regular",
-    fontSize: 20,
-    textAlign: 'center'
+    fontSize: 15,
+    textAlign: 'center',
+    padding: 20
   },
   inputContainer: {
     flex: 4,
-    // borderWidth:'0.25',
-    // borderRightWidth: 0,
-    // borderLeftWidth: 0,
     width: 390,
     height: 237,
     justifyContent: 'top',
