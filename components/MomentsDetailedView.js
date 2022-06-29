@@ -16,118 +16,18 @@ import { useFonts } from 'expo-font';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import axios from 'axios';
 
-
-var images = [
-  require('../assets/pictures/1.jpg'),
-  require('../assets/pictures/2.jpeg'),
-  require('../assets/pictures/3.jpeg'),
-  require('../assets/pictures/soju.png'),
-  require('../assets/pictures/5.jpeg'),
-  require('../assets/pictures/6.jpeg'),
-  require('../assets/pictures/7.jpg'),
-  require('../assets/pictures/8.jpg'),
-  require('../assets/pictures/9.jpg'),
-  require('../assets/pictures/10.jpeg'),
-  require('../assets/pictures/11.jpg'),
-  require('../assets/pictures/12.jpg'),
-  require('../assets/pictures/13.jpg'),
-  require('../assets/pictures/14.jpg'),
-  require('../assets/pictures/15.jpg')
-]
-
-var momentsExample = [
-  {
-    image: images[0],
-    date: 'September 27, 2021',
-    caption: 'Had some time to read one of my favorite books'
-  },
-  {
-    image: images[1],
-    date: 'September 27, 2021',
-    caption: 'binged Run BTS '
-  },
-  {
-    image: images[2],
-    date: 'September 27, 2021',
-    caption: 'spent time on myself'
-  },
-  {
-    image: images[3],
-    date: 'September 27, 2021',
-    caption: 'Leles bday :3'
-  },
-  {
-    image: images[4],
-    date: 'September 27, 2021',
-    caption: 'love being on vacation and not doing anything (: '
-  },
-  {
-    image: images[5],
-    date: 'September 27, 2021',
-    caption: 'our beautiful florence airbnb'
-  },
-  {
-    image: images[6],
-    date: 'September 27, 2021',
-    caption: 'Christmas at Julisas!'
-  },
-  {
-    image: images[7],
-    date: 'September 27, 2021',
-    caption: 'Beautiful day in LA'
-  },
-  {
-    image: images[8],
-    date: 'September 27, 2021',
-    caption: 'I got to enjoy a nice picnic in anaheim with Perry today :) I painted under the sun'
-  },
-  {
-    image: images[9],
-    date: 'September 21, 2021',
-    caption: 'first time in Taiwan!'
-  },
-  {
-    image: images[10],
-    date: 'September 21, 2021',
-    caption: 'first time in Hong Kong!'
-  },
-  {
-    image: images[11],
-    date: 'September 21, 2021',
-    caption: 'Had ice cream with Maggie and Leanna :) '
-  },
-  {
-    image: images[12],
-    date: 'September 21, 2021',
-    caption: 'Kayaked in Brooklyn :3'
-  },
-  {
-    image: images[13],
-    date: 'September 21, 2021',
-    caption: 'first time in Taiwan!'
-  },
-  {
-    image: images[14],
-    date: 'September 21, 2021',
-    caption: 'I miss Steve and Karrie!'
-  }
-]
-
 var {width, height} = Dimensions.get('window')
 
 const renderImages = ({ navigation }) => {
-
   const [moments, setMoments] = useState([]);
 
   useEffect(() => {
     axios.get('http://localhost:3000/moments')
       .then((response) => {
         let momentsArr = [];
-        // console.log('response', response.data);
         for (let i = 0; i < response.data.length; i++) {
           momentsArr.push(response.data[i])
         }
-        // console.log('momentsArr', momentsArr);
         setMoments(momentsArr);
         return;
       })
@@ -140,17 +40,13 @@ const renderImages = ({ navigation }) => {
     'AnticDidone-Regular' : require ('../assets/fonts/AnticDidone-Regular.ttf')
   });
 
-  // if (!fontsLoaded) {
-  //   return <AppLoading />;
-  // }
-
-  return moments.map(( moment, index ) => {
+  return moments?.map(( moment, index ) => {
     // console.log('moment', moment)
     return(
         <View key={index} style={[{ width: (width) / 3.08 }, {height: (width) / 3.08 },
         {padding: 2}
         ]}>
-          <TouchableWithoutFeedback onPress={() => navigation.navigate('Moments', moment)}>
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('Moments', moment, {index: index})}>
             <Image style={{
               flex: 1,
               alignSelf: 'stretch',
@@ -168,7 +64,6 @@ const renderImages = ({ navigation }) => {
 }
 
 const MomentsDetailedView = ({navigation}) => {
-
   return(
     <View style={{ flex: 1, flexDirection: 'column', paddingTop: 60}}>
       <View style={{flex: 1,  borderBottomWidth: 0.25, paddingTop: 20}}>

@@ -61,7 +61,7 @@ const Homepage = () => {
             </Text>
           </View>
           <View style={{ flex: 1, paddingTop: 9}}>
-            <View style={{flex: 1, width: width, height: height/4, borderWidth: 0.25}}>
+            <View style={{flex: 1, width: width, height: height/5, borderWidth: 0.25}}>
               {/* <Text style={{fontFamily:'AnticDidone-Regular', fontSize: 20, textAlign: 'left', paddingLeft:10 }}> 1. </Text> */}
               <TextInput
               style= {{
