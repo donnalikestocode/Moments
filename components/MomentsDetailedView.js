@@ -16,7 +16,7 @@ import { useFonts } from 'expo-font';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import axios from 'axios';
 
-//test
+console.log('test')
 
 var {width, height} = Dimensions.get('window')
 
