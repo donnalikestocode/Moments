@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import axios from 'axios';
+import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 const UploadMoment = ({navigation}) => {
   const [text, setText] = useState("");
@@ -99,16 +100,21 @@ const UploadMoment = ({navigation}) => {
             style={styles.button}>upload image</Text>
         </View>
       </TouchableOpacity>
-      <View
-       style={styles.inputContainer}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View
+       style={styles.inputContainer}
+       >
         <TextInput
           style={styles.input}
           onChangeText={onChangeText}
           value={text}
           placeholder="add text"
           multiline={true}
+          onSubmit ={Keyboard.dismiss}
         />
-      </View>
+        </View>
+      </TouchableWithoutFeedback>
+
       <View
         style={styles.bar} >
         <TouchableOpacity
@@ -158,7 +164,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderLeftWidth: 0,
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 5,
   },
   button: {
     fontFamily: "AnticDidone-Regular",
@@ -167,11 +173,13 @@ const styles = StyleSheet.create({
     padding: 20
   },
   inputContainer: {
-    flex: 4,
+    flex: 3,
     width: 390,
-    height: 237,
+    height: 157,
     justifyContent: 'top',
     marginBottom: 10,
+    // marginTop:50,
+    paddingTop:100,
   },
   input: {
     fontFamily: "AnticDidone-Regular",

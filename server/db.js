@@ -44,3 +44,4 @@ module.exports.save = save;
 // show databases: show dbs
 // go into db: use (db name)
 // show content in tables: db.collectionName.find()
+// remove all documents from database: db.collectionName.deleteMany()
