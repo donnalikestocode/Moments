@@ -21,8 +21,8 @@
       "supportsTablet": true,
       "bundleIdentifier": "gratitude",
       "infoPlist": {
-        "NSAppTransportSecurity" : {
-          "NSAllowsArbitraryLoads" : true
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
         }
       }
     },
@@ -34,6 +34,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2730cb09-007b-49c1-8c9d-434c55476e2e"
+      }
     }
   }
 }
