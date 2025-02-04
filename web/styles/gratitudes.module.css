@@ -1,0 +1,86 @@
+.title {
+  margin: 30px;
+  font-family:'AnticDidone-Regular';
+  font-size: 45px;
+  color: black;
+  text-shadow: 2px 2px 4px rgba(108, 103, 103, 0.25);
+}
+
+.gratitudes {
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gratitude_card {
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 20px;
+  font-family: none;
+}
+
+.gratitude_card:nth-of-type(even) {
+  background-color: #EDEAE4;
+  color:#313131;
+}
+
+.gratitude_card:nth-of-type(odd) {
+  background-color: #c7dce4;
+  color: #ffffff;
+}
+
+.gratitude_card_line {
+  /* border-bottom: 1px solid rgb(237,237,237,0.50); */
+  /* border-bottom: 1px solid rgba(255,255,255,.25); */
+  border-bottom: 1px solid rgb(237,237,237,0.90);
+  width: 468px;
+  /* margin-bottom:10px; */
+}
+
+.gratitude_card_title {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 16px;
+  color:#767779;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  background-color: #faf7f1;
+  width: 100%;
+  text-align: center;
+}
+
+.gratitude_card_caption{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  width: 468px;
+  height:468px;
+  text-align: center;
+  /* margin-top: 20px;
+  margin-bottom: 25px; */
+  /* background-color: blue; */
+}
+
+
+.gratitude_card_caption_word{
+  font-size: 20px;
+  margin-left:30px;
+  margin-right:30px;
+  word-spacing: 1px;
+  line-height: 1.6;
+}
+
+.gratitude_card_date {
+  width:468px;
+  color:#8B8B8B;
+  font-size:10px;
+  font-family: 'Inter', sans-serif;
+  display:flex;
+  justify-content: left;
+  padding-bottom:40px;
+  padding-top: 20px;
+  background-color: #faf7f1;
+}

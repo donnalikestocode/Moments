@@ -1,0 +1,168 @@
+.HomeTitle {
+  text-shadow: 2px 2px 4px rgba(108, 103, 103, 0.25);
+  margin: 20px;
+  font-family:'AnticDidone-Regular';
+  font-size: 45px;
+  font-weight: 500;
+  color: black;
+}
+
+.HomeSubtitle {
+  color: #8B8B8B;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  text-shadow: 2px 2px 4px rgba(108, 103, 103, 0.25);
+  /* text-transform: capitalize; */
+}
+
+.date {
+  text-transform: uppercase;
+}
+
+.HomeImageContainer{
+  position: relative;
+  display: inline-block;
+}
+
+.HomeTextOverlay {
+  position: absolute;
+  top: 30%; /* Adjust the top and left values to position the text as desired */
+  left: 50%;
+  /* background-color: rgba(255, 255, 255, 0.7);  */
+  /* padding: 5px; */
+  font-size: 16px;
+  transform: translate(-50%, -50%);
+  color: #5d5c5c; /* Text color */
+  width: 80%;
+  text-align: center;
+}
+
+.HomePic {
+  width: 450px;
+  height: 250px;
+  opacity: 70%;
+  border: 1px solid #8B8B8B;
+  margin-top: 10px;
+}
+
+.GratitudeUpload {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.GratitudeUploadForm {
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  border: 1px solid #8B8B8B;
+  margin: 15px;
+  width: 450px;
+}
+
+.GratitudeUploadLine {
+  margin: 10px;
+  color: #8B8B8B;
+  opacity: 40%;
+}
+
+.GratitudeUploadImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #faf7f1;
+  opacity: 80%;
+  height: 300px;
+  width: 450px;
+  object-fit: cover
+  /* height: 100px; */
+}
+
+.GratitudeImgUpload {
+  height: 100px;
+  width: 450px;
+  background-color: #faf7f1;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* text-align: center; */
+  /* justify-content: center; */
+}
+
+.GratitudeImgUpload label {
+  display: block;
+  padding: 20px;
+  /* background-color: #007bff; */
+  /* color: white; */
+  cursor: pointer;
+}
+
+.GratitudeImgUpload input[type="file"] {
+  display: none;
+}
+
+.GratitudeUploadText textarea{
+  background-color: #faf7f1;
+  font-family:'AnticDidone-Regular';
+  color: #BFBABA;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  text-align: left;
+  vertical-align: top;
+  resize: none;
+}
+
+.GratitudeUploadPrompt textarea {
+  width: 100%;
+  height: 50px;
+  font-family:'AnticDidone-Regular';
+  background-color: #faf7f1;
+  font-size: 15px;
+  resize: none;
+  /* padding: 10px; */
+}
+
+#image-preview {
+  opacity: 80%;
+  height: 300px;
+  width: 450px;
+  object-fit: cover
+}
+
+.GratitudeUploadPrompt {
+  padding: 10px;
+  height: 50px;
+  width: 428px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-family:'AnticDidone-Regular';
+  background-color: #faf7f1;
+  font-size: 15px;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+
+}
+
+.GratitudeUploadText {
+  width: 430px;
+  height: 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction:column;
+  font-family:'AnticDidone-Regular';
+  font-size: 14px;
+  color: #8e8989;
+  vertical-align: top;
+}
+
+.GratitudeUploadForm button {
+  background-color: #faf7f1;
+  /* color: white; */
+  /* border: none; */
+  margin-bottom: 10px;
+  font-family:'AnticDidone-Regular';
+}
+

@@ -1,0 +1,71 @@
+.MomentsDetailed {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 13%;
+  margin-right: 13%;
+}
+
+.title {
+  margin: 30px;
+  /* font-size: 10vw; */
+  font-family:'AnticDidone-Regular';
+  /* font-family: 'Anonymous Pro', monospace; */
+  font-size: 45px;
+  color: black;
+  text-shadow: 2px 2px 4px rgba(108, 103, 103, 0.25);
+}
+
+.moments_images {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.moments_card{
+  position: relative;
+  flex-basis: calc(33.333% - 4px);
+  margin: 2px;
+  /* border: 1px solid; */
+  /* border-color: lightgrey; */
+  box-sizing: border-box;
+}
+
+.moments_card :hover {
+  cursor: pointer;
+}
+
+.moments_card::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.moments_card .content {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+  overflow:hidden;
+}
+
+.moment_image_center {
+  width: 100%;
+  height:100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width:1247px) {
+  .MomentsDetailed {
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+
+}
+
+
+@media screen and (max-width:767px) {
+
+}
