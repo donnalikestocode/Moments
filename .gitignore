@@ -77,3 +77,8 @@ dist/
 .env
 
 exampleData.js
+# Xcode
+*.xcuserstate
+*.xcworkspace
+build/
+DerivedData/

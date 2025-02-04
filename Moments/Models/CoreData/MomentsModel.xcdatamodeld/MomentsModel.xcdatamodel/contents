@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23605" systemVersion="24C101" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Moment" representedClassName="Moment" syncable="YES">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateEdited" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="descriptionText" optional="YES" attributeType="String"/>
+        <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="momentID" attributeType="String"/>
+        <attribute name="syncStatus" attributeType="String"/>
+        <attribute name="tag" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="uploadStatus" attributeType="String"/>
+    </entity>
+</model>
