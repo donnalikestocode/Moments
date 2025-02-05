@@ -79,4 +79,6 @@ dist/
 exampleData.js
 
 /.ios
-/.android
+/.android.expo-shared/assets.json
+
+.expo-shared/.expo-shared/
