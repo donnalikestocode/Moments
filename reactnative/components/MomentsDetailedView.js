@@ -1,122 +1,85 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  TextInput,
-   Button,
-   StyleSheet,
-   Text,
-   TouchableWithoutFeedback,
-   Dimensions,
-   Image,
-   ScrollView,
-   FlatList
-} from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import { useFonts } from 'expo-font';
-// import AppLoading from 'expo-app-loading';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import axios from 'axios';
+import * as FileSystem from 'expo-file-system';
 
-console.log('test')
+const { width } = Dimensions.get('window');
 
-var {width, height} = Dimensions.get('window')
-
-const renderImages = ({ navigation }) => {
+const MomentsDetailedView = ({ navigation }) => {
   const [moments, setMoments] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/moments')
+    axios.get('http://10.0.0.146:3000/moments')
       .then((response) => {
-        let momentsArr = [];
-        for (let i = 0; i < response.data.length; i++) {
-          momentsArr.push(response.data[i])
-        }
-        setMoments(momentsArr);
-        return;
+        console.log('Fetched Moments:', response.data);
+        setMoments(response.data);
       })
       .catch((error) => {
-        console.log('could not get moments')
-      })
-  },[moments]);
+        console.error('Could not get moments:', error);
+      });
+  }, []);
 
   let [fontsLoaded] = useFonts({
-    'AnticDidone-Regular' : require ('../assets/fonts/AnticDidone-Regular.ttf')
+    'AnticDidone-Regular': require('../assets/fonts/AnticDidone-Regular.ttf'),
   });
 
-  return moments?.map(( moment, index ) => {
-    // console.log('moment', moment)
-    return(
-        <View key={index} style={[{ width: (width) / 3.1 }, {height: (width) / 3.1 },
-        {padding: 2}
-        ]}>
-          <TouchableWithoutFeedback onPress={() => navigation.navigate('Moments', moment, {index: index})}>
-            <Image style={{
-              flex: 1,
-              alignSelf: 'stretch',
-              width: undefined,
-              height: undefined,
-              borderWidth: 0.5,
-              opacity: 0.8
-            }}
-              source = {{uri: moment.image}}
+  if (!fontsLoaded) {
+    return null; // Ensures rendering only after fonts are loaded
+  }
+
+  const renderImages = () => {
+    return moments.map((moment, index) => {
+      let imageUri = moment.image.startsWith('file://')
+        ? moment.image
+        : FileSystem.documentDirectory + moment.image.split('/').pop(); // Ensures correct local path
+
+      return (
+        <View key={moment._id || index} style={{ width: width / 3.1, height: width / 3.1, padding: 2 }}>
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('Moments', { moment, index })}>
+            <Image
+              style={{
+                flex: 1,
+                alignSelf: 'stretch',
+                width: undefined,
+                height: undefined,
+                borderWidth: 0.5,
+                opacity: 0.8,
+              }}
+              source={{ uri: imageUri }}
             />
           </TouchableWithoutFeedback>
         </View>
-    )
-  })
-}
+      );
+    });
+  };
 
-const MomentsDetailedView = ({navigation}) => {
-  return(
-    <View style={{ flex: 1, flexDirection: 'column', paddingTop: 60}}>
-      <View style={{flex: 1,  borderBottomWidth: 0.25, paddingTop: 20}}>
-        <Text style={styles.text}> ENJOY </Text>
-        <Text style={styles.text}> the </Text>
-        <Text style={styles.text}> little things </Text>
+  return (
+    <View style={{ flex: 1, flexDirection: 'column', paddingTop: 60 }}>
+      <View style={{ flex: 1, borderBottomWidth: 0.25, paddingTop: 20 }}>
+        <Text style={styles.text}>ENJOY</Text>
+        <Text style={styles.text}>the</Text>
+        <Text style={styles.text}>little things</Text>
       </View>
-      <View style={{flex: 4}}>
+      <View style={{ flex: 4 }}>
         <ScrollView
-          vertical={true}
-          showsVerticalScrollIndicator={true}
-          contentContainerStyle={{
-              alignItems: 'center',
-              paddingStart: 5,
-              paddingEnd: 5,
-          }}
-          >
-          <View style={{flex: 7}}>
+          vertical
+          showsVerticalScrollIndicator
+          contentContainerStyle={{ alignItems: 'center', paddingStart: 5, paddingEnd: 5 }}
+        >
+          <View style={{ flex: 7 }}>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', paddingTop: 8 }}>
-              {renderImages({navigation})}
+              {renderImages()}
             </View>
           </View>
         </ScrollView>
       </View>
-      </View>
-  )
-}
+    </View>
+  );
+};
 
-  const styles = StyleSheet.create({
-    text: {
-      fontFamily: "AnticDidone-Regular",
-      fontSize: 36,
-      textAlign: 'left'
-    },
-    bar: {
-      flexDirection: "row",
-      justifyContent: "space-evenly",
-      borderWidth:'0.25',
-      borderRightWidth: 0,
-      borderLeftWidth: 0,
-      borderBottomWidth: 0,
-      paddingTop: 15,
-      paddingBottom: 50,
-      backgroundColor: "#F3F2F2"
-    },
-    barbutton: {
-      fontFamily: "AnticDidone-Regular",
-      fontSize: 12,
-      textAlign: 'center'
-    }
-  })
-
+const styles = StyleSheet.create({
+  text: { fontFamily: 'AnticDidone-Regular', fontSize: 36, textAlign: 'left' },
+});
 
 export default MomentsDetailedView;

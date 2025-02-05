@@ -77,3 +77,6 @@ dist/
 .env
 
 exampleData.js
+
+/.ios
+/.android
