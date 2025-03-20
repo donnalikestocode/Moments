@@ -11,13 +11,13 @@ struct MomentsGridView: View {
 
     var body: some View {
         ZStack {
-            Color(red: 222/255, green: 232/255, blue: 232/255) // DEE8E8
+            Color(red: 222/255, green: 232/255, blue: 232/255)
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
+                
                 // Header
                 ZStack {
-                    // Background with rounded corners
                     UnevenRoundedRectangle(
                         topLeadingRadius: 10,
                         bottomLeadingRadius: 0,
@@ -26,17 +26,16 @@ struct MomentsGridView: View {
                     )
                     .fill(Color(red: 153/255, green: 205/255, blue: 93/255))
                     .frame(height: 50)
-
-                    // Border with rounded corners
-                    UnevenRoundedRectangle(
-                        topLeadingRadius: 10,
-                        bottomLeadingRadius: 0,
-                        bottomTrailingRadius: 0,
-                        topTrailingRadius: 10
+                    .overlay(
+                        UnevenRoundedRectangle(
+                            topLeadingRadius: 10,
+                            bottomLeadingRadius: 0,
+                            bottomTrailingRadius: 0,
+                            topTrailingRadius: 10
+                        )
+                        .stroke(Color.black, lineWidth: 2)
+                        .frame(height: 50)
                     )
-                    .stroke(Color.black, lineWidth: 2)
-                    .frame(height: 50)
-
                     HStack {
                         Text("my moments <3")
                             .font(.custom("Cute Notes", size: 20))
@@ -45,18 +44,18 @@ struct MomentsGridView: View {
                         Spacer()
                         HStack(spacing: 5) {
                             Image(systemName: "minus.square")
-                                .foregroundColor(.black) // Icon color
+                                .foregroundColor(.black)
                                 .background(
                                     RoundedRectangle(cornerRadius: 5)
-                                        .fill(Color.gray.opacity(0.4)) // Gray background with some transparency
-                                        .frame(width: 15, height: 15) // Adjust size as needed
+                                        .fill(Color(red: 217/255, green: 217/255, blue: 217/255))
+                                        .frame(width: 15, height: 15)
                                 )
 
                             Image(systemName: "square.grid.2x2")
                                 .foregroundColor(.black)
                                 .background(
                                     RoundedRectangle(cornerRadius: 5)
-                                        .fill(Color.gray.opacity(0.4))
+                                        .fill(Color(red: 217/255, green: 217/255, blue: 217/255))
                                         .frame(width: 15, height: 15)
                                 )
 
@@ -64,7 +63,7 @@ struct MomentsGridView: View {
                                 .foregroundColor(.black)
                                 .background(
                                     RoundedRectangle(cornerRadius: 5)
-                                        .fill(Color.gray.opacity(0.4))
+                                        .fill(Color(red: 217/255, green: 217/255, blue: 217/255))
                                         .frame(width: 15, height: 15)
                                 )
                         }
@@ -95,13 +94,17 @@ struct MomentsGridView: View {
                     ZStack {
                         UnevenRoundedRectangle(
                             topLeadingRadius: 0,
-                            bottomLeadingRadius: 10, bottomTrailingRadius: 10, topTrailingRadius: 0
+                            bottomLeadingRadius: 10,
+                            bottomTrailingRadius: 10,
+                            topTrailingRadius: 0
                         )
                         .fill(Color.white)
 
                         UnevenRoundedRectangle(
                             topLeadingRadius: 0,
-                            bottomLeadingRadius: 10, bottomTrailingRadius: 10, topTrailingRadius: 0
+                            bottomLeadingRadius: 10,
+                            bottomTrailingRadius: 10,
+                            topTrailingRadius: 0
                         )
                         .stroke(Color.black, lineWidth: 2)
                     }
@@ -109,5 +112,12 @@ struct MomentsGridView: View {
                 .padding(.bottom, 130)
             }
         }
+    }
+}
+
+struct MomentsGridView_Previews: PreviewProvider {
+    static var previews: some View {
+        MomentsGridView()
+            .environmentObject(NavigationState())
     }
 }

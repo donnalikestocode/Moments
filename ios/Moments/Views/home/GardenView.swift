@@ -34,4 +34,10 @@ struct GardenView: View {
     }
 }
 
+struct GardenView_Previews: PreviewProvider {
+    static var previews: some View {
+        GardenView()
+            .environmentObject(NavigationState())
+    }
+}
 
