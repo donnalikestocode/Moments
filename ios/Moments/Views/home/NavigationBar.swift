@@ -1,10 +1,3 @@
-//
-//  NavigationBarView.swift
-//  Moments
-//
-//  Created by Donna on 3/19/25.
-//
-
 import SwiftUI
 
 struct NavigationBar: View {
@@ -13,16 +6,15 @@ struct NavigationBar: View {
     
     var body: some View {
         ZStack {
+            VStack {
+                Image("bushes")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: UIScreen.main.bounds.width, height: 100)
+            }
             
-            Image("bushes")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: UIScreen.main.bounds.width, height: 100)
-                .ignoresSafeArea(edges: .bottom) // Make sure it covers the bottom edge
-
-            
+            // Navigation Tabs (foreground)
             HStack(spacing: 40) {
-                
                 // Garden Tab
                 Button(action: {
                     selectedTab = "garden"
@@ -31,9 +23,9 @@ struct NavigationBar: View {
                     Image("gardenTab")
                         .resizable()
                         .frame(width: 100, height: 100)
-                        .offset(y: selectedTab == "garden" ? -20 : 0)
+                        .offset(y: selectedTab == "garden" ? -20 : 0) // Pop-up effect
                 }
-                
+
                 // Journal Tab
                 Button(action: {
                     selectedTab = "journal"
@@ -42,11 +34,10 @@ struct NavigationBar: View {
                     Image("journalTab")
                         .resizable()
                         .frame(width: 100, height: 100)
-                        .offset(y: selectedTab == "journal" ? -20 : 0)
+                        .offset(y: selectedTab == "journal" ? -20 : 0) // Pop-up effect
                 }
             }
-            .padding(.bottom, 20)
+            .padding(.bottom, 20) // Space between tabs and bottom
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom) // Keep at the bottom
     }
 }
