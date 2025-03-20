@@ -5,11 +5,12 @@ import CoreData
 struct MomentsApp: App {
     let persistenceController = PersistenceController.shared
 
+    @StateObject var navigationState = NavigationState()
+
     var body: some Scene {
         WindowGroup {
-//            MomentsListView(context: persistenceController.viewContext)
-//            ImageTest()
-              GardenView()
+              ContentView()
+                .environmentObject(navigationState)
         }
     }
 }

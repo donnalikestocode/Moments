@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct JournalEntryView: View {
+    
+    @EnvironmentObject var navigationState: NavigationState
+    
     @State private var gratitudeText: String = "" // Stores user input
 
     var body: some View {
@@ -35,6 +38,12 @@ struct JournalEntryView: View {
                     .cornerRadius(10)
                     .padding()
             }
+        }
+        .onAppear {
+            navigationState.showNavBar = false
+        }
+        .onDisappear {
+            navigationState.showNavBar = true
         }
         .padding()
     }

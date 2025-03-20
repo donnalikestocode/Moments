@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct JournalWithThoughtBubble: View {
+    
+    @EnvironmentObject var navigationState: NavigationState
+    
     @State private var opacity: Double = 1.0
     @State private var isAnimating = false
 
@@ -19,15 +22,15 @@ struct JournalWithThoughtBubble: View {
                  .blur(radius: 15) // Makes it look like a glow
                  .offset(x: 25, y: 10) // Keep the glow aligned with the thought bubble
             
-            NavigationLink(destination: JournalEntryView()) {
+            NavigationLink(destination: JournalEntryView()
+                .onAppear {
+                    navigationState.showNavBar = false
+                }) {
                 Image("thoughtBubble")
                     .resizable()
                     .frame(width: 60, height: 60)
                     .opacity(isAnimating ? 0.9 : 1.0)
                     .animation(.easeInOut(duration: 3.0).repeatForever(autoreverses: true), value: opacity)
-
-//                    .opacity(opacity) // Only changes opacity, not position
-//                    .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true), value: opacity) // Smooth fade in/out
             }
             .offset(x: 25, y: 10) // Fixed position
             .onAppear {

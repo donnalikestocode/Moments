@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct GardenView: View {
+    @EnvironmentObject var navigationState: NavigationState
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -29,6 +31,9 @@ struct GardenView: View {
                     JournalWithThoughtBubble()
 
                     Spacer()
+                }
+                .onAppear {
+                    navigationState.showNavBar = true
                 }
             }
         }
