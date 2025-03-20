@@ -11,11 +11,11 @@ struct JournalEntryView: View {
     
     @EnvironmentObject var navigationState: NavigationState
     
-    @State private var gratitudeText: String = "" // Stores user input
+    @State private var gratitudeText: String = ""
 
     var body: some View {
         VStack {
-            Text("What are you grateful for today?") // Placeholder for quote of the day
+            Text("What are you grateful for today?")
                 .font(.headline)
                 .padding()
 
@@ -28,7 +28,7 @@ struct JournalEntryView: View {
             Spacer()
 
             Button(action: {
-                print("Gratitude saved: \(gratitudeText)") // Placeholder for saving
+                print("Gratitude saved: \(gratitudeText)") 
             }) {
                 Text("Save Gratitude")
                     .padding()

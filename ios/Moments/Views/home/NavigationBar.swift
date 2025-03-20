@@ -23,7 +23,7 @@ struct NavigationBar: View {
                     Image("gardenTab")
                         .resizable()
                         .frame(width: 100, height: 100)
-                        .offset(y: selectedTab == "garden" ? -20 : 0) // Pop-up effect
+                        .offset(y: selectedTab == "garden" ? -20 : 0)
                 }
 
                 // Journal Tab
@@ -34,10 +34,10 @@ struct NavigationBar: View {
                     Image("journalTab")
                         .resizable()
                         .frame(width: 100, height: 100)
-                        .offset(y: selectedTab == "journal" ? -20 : 0) // Pop-up effect
+                        .offset(y: selectedTab == "journal" ? -20 : 0)
                 }
             }
-            .padding(.bottom, 20) // Space between tabs and bottom
+            .padding(.bottom, 20) 
         }
     }
 }

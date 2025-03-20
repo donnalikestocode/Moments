@@ -27,7 +27,7 @@ struct ContentView: View {
                         Spacer()
                         NavigationBar(selectedTab: $selectedTab)
                     }
-                    .transition(.move(edge: .bottom)) // Smooth transition for showing/hiding
+                    .transition(.move(edge: .bottom))
                 }
                 
             }
