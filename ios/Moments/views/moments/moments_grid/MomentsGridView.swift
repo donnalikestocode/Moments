@@ -4,9 +4,7 @@ struct MomentsGridView: View {
     @StateObject var viewModel = MomentsViewModel()
 
     let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
+        GridItem(.adaptive(minimum: 150, maximum: 180), spacing: 8)
     ]
 
     var body: some View {
@@ -74,21 +72,7 @@ struct MomentsGridView: View {
 
                 // Grid of Images
                 ScrollView {
-                    LazyVGrid(columns: columns, spacing: 15) {
-                        ForEach(viewModel.moments) { moment in
-                            Image(moment.image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 105, height: 105)
-                                .clipped()
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 0)
-                                        .stroke(Color.black, lineWidth: 0.5)
-                                )
-                                
-                        }
-                    }
-                    .padding()
+                    MasonryGridView()
                 }
                 .background(
                     ZStack {
