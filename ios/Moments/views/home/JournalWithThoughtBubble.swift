@@ -9,7 +9,7 @@ import SwiftUI
 
 struct JournalWithThoughtBubble: View {
     
-    @EnvironmentObject var navigationState: NavigationState
+    @EnvironmentObject var navigationState: NavigationBarModel
     
     @State private var opacity: Double = 1.0
     @State private var isAnimating = false

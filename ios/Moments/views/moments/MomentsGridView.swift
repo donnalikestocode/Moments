@@ -118,6 +118,6 @@ struct MomentsGridView: View {
 struct MomentsGridView_Previews: PreviewProvider {
     static var previews: some View {
         MomentsGridView()
-            .environmentObject(NavigationState())
+            .environmentObject(NavigationBarModel())
     }
 }

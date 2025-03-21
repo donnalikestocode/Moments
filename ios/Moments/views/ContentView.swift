@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @EnvironmentObject var navigationState: NavigationState
+    @EnvironmentObject var navigationState: NavigationBarModel
+    
     @State private var selectedTab: String = "garden"
     
     var body: some View {
@@ -39,6 +40,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(NavigationState())
+            .environmentObject(NavigationBarModel())
     }
 }

@@ -5,12 +5,12 @@ import CoreData
 struct MomentsApp: App {
     let persistenceController = PersistenceController.shared
 
-    @StateObject var navigationState = NavigationState()
+    @StateObject var navigationBarModel = NavigationBarModel()
 
     var body: some Scene {
         WindowGroup {
               ContentView()
-                .environmentObject(navigationState)
+                .environmentObject(navigationBarModel)
         }
     }
 }

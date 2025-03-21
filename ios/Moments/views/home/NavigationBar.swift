@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct NavigationBar: View {
-    @EnvironmentObject var navigationState: NavigationState
+    @EnvironmentObject var navigationState: NavigationBarModel
     @Binding var selectedTab: String
     
     var body: some View {

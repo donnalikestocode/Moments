@@ -7,6 +7,6 @@
 
 import SwiftUI
 
-class NavigationState: ObservableObject {
+class NavigationBarModel: ObservableObject {
     @Published var showNavBar: Bool = true
 }

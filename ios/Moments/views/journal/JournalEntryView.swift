@@ -9,7 +9,7 @@ import SwiftUI
 
 struct JournalEntryView: View {
     
-    @EnvironmentObject var navigationState: NavigationState
+    @EnvironmentObject var navigationState: NavigationBarModel
     
     @State private var gratitudeText: String = ""
 
