@@ -1,37 +1,61 @@
 import SwiftUI
 
 struct MomentListView: View {
-    var entry: MomentEntry // This will be the model that holds the data for each moment
+    var entry: MomentEntry
+    
+    // Track the active (frontmost) window
+    @State private var activeWindow: String = "gratitude"  // Default front window
 
     var body: some View {
-        VStack {
-            // Date at the top
-            Text(entry.date, style: .date)
-                .font(.custom("Cute Notes", size: 20))
-                .padding(.top, 20)
+        ZStack {
+            Color(red: 0.87, green: 0.91, blue: 0.91)
+                .ignoresSafeArea()
             
-            // Image Window
-            MomentWindowView(title: "pics!", headerColor: Color.pink) {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 10) {
-                        ForEach(entry.images, id: \.image) { imageEntry in
-                            Image(imageEntry.image)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 200, height: 300) // Adjust size as needed
-                                .cornerRadius(10)
-                                .shadow(radius: 3)
-                        }
-                    }
-                    .padding()
-                }
+            VStack {
+                Text(entry.date, style: .date)
+                    .font(.custom("Cute Notes", size: 20))
+                    .padding(.top, 20)
+                Spacer()
             }
 
-            Spacer()
+            // Pics Window
+            MomentWindowView(title: "pics!", headerColor: Color(red: 0.89, green: 0.72, blue: 0.76)) {
+                ImageView(entry: entry)
+            }
+            .offset(x: -10, y: -110)
+            .padding()
+            .zIndex(activeWindow == "pics" ? 3 : 1) // Adjust zIndex based on active window
+            .onTapGesture {
+                activeWindow = "pics"
+            }
+
+            // Flower and Quote Window
+            MomentWindowView(title: "on this day", headerColor: Color(red: 0.93, green: 0.75, blue: 0.38)) {
+                FlowerQuoteView(entry: entry)
+            }
+            .offset(x: 10, y: 110)
+            .zIndex(activeWindow == "quote" ? 3 : 2)
+            .padding()
+            .onTapGesture {
+                activeWindow = "quote"
+            }
+
+            // Gratitude Window
+            MomentWindowView(title: "gratitude",  headerColor: Color(red: 0.59, green: 0.80, blue: 0.94)) {
+                Text(entry.gratitude)
+                    .font(.custom("Cute Notes", size: 18))
+                    .padding()
+            }
+            .offset(x: 2, y: 220)
+            .padding()
+            .zIndex(activeWindow == "gratitude" ? 3 : 1)
+            .onTapGesture {
+                activeWindow = "gratitude"
+            }
         }
-        .padding()
     }
 }
+
 
 struct MomentListView_Previews: PreviewProvider {
     static var previews: some View {

@@ -28,7 +28,7 @@ struct MomentWindowView<Content: View>: View {
                         .foregroundColor(.black)
                         .padding(.leading, 8)
                     Spacer()
-                    HStack(spacing: 5) {
+                    HStack(spacing: 3) {
                         Image(systemName: "minus.square")
                         Image(systemName: "square.grid.2x2")
                         Image(systemName: "xmark.square")
