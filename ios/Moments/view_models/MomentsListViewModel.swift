@@ -1,48 +1,48 @@
-import CoreData
-import Combine
+import SwiftUI
 
 class MomentsListViewModel: ObservableObject {
-    @Published var moments: [Moment] = []
-    private let context: NSManagedObjectContext
-
-    init(context: NSManagedObjectContext) {
-        self.context = context
-        fetchMoments()
-    }
-
-    func fetchMoments() {
-        let fetchRequest: NSFetchRequest<Moment> = Moment.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Moment.dateCreated, ascending: true)]
-        do {
-            moments = try context.fetch(fetchRequest)
-        } catch {
-            print("Failed to fetch moments: \(error.localizedDescription)")
-        }
-    }
-
-    func addMoment() {
-        let newMoment = Moment(context: context)
-        newMoment.momentID = UUID().uuidString
-        newMoment.title = "New Moment"
-        newMoment.dateCreated = Date()
-        newMoment.syncStatus = "pending_sync" // Default value
-        newMoment.uploadStatus = "pending_upload" // Default value
-        newMoment.tag = "General" // Default value
-
-        saveContext()
-    }
-
-    func deleteMoments(at offsets: IndexSet) {
-        offsets.map { moments[$0] }.forEach(context.delete)
-        saveContext()
-    }
-
-    private func saveContext() {
-        do {
-            try context.save()
-            fetchMoments()
-        } catch {
-            print("Failed to save context: \(error.localizedDescription)")
-        }
-    }
+    @Published var moments: [MomentEntry] = [
+        MomentEntry(
+            date: Date(),
+            images: [
+                ImageEntry(image: "photo1"),
+                ImageEntry(image: "photo2"),
+                ImageEntry(image: "photo3")
+            ],
+            flower: "roses",
+            quote: "I'm in no rush.\nI will take the scenic route.",
+            gratitude: "I'm so grateful for being able to watch our friends get married and soak in the warm Hawaii sun :)"
+        ),
+        MomentEntry(
+            date: Date(),
+            images: [
+                ImageEntry(image: "photo4"),
+                ImageEntry(image: "photo5")
+            ],
+            flower: "tulips",
+            quote: "Breathe in peace.\nBreathe out tension.",
+            gratitude: "Grateful for being able to spend quality time with loved ones."
+        ),
+        MomentEntry(
+            date: Date(),
+            images: [
+                ImageEntry(image: "photo6"),
+                ImageEntry(image: "photo7"),
+                ImageEntry(image: "photo8")
+            ],
+            flower: "tulips",
+            quote: "Breathe in peace.\nBreathe out tension.",
+            gratitude: "Grateful for being able to spend quality time with loved ones."
+        ),
+        MomentEntry(
+            date: Date(),
+            images: [
+                ImageEntry(image: "photo9"),
+                ImageEntry(image: "photo10")
+            ],
+            flower: "tulips",
+            quote: "Breathe in peace.\nBreathe out tension.",
+            gratitude: "Grateful for being able to spend quality time with loved ones."
+        )
+    ]
 }

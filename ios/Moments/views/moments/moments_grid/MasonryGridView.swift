@@ -1,27 +1,34 @@
 import SwiftUI
 
 struct MasonryGridView: View {
-    @ObservedObject var viewModel = MomentsViewModel()
+    @ObservedObject var viewModel = MomentsListViewModel()
 
     var body: some View {
         ScrollView {
             VStack {
-                // Create two columns to simulate a Pinterest-style layout
                 HStack(alignment: .top, spacing: 10) {
                     // Left Column
                     VStack(spacing: 10) {
-                        ForEach(viewModel.moments.indices, id: \.self) { index in
-                            if index % 2 == 0 {
-                                CollageImageView(imageName: viewModel.moments[index].image, height: viewModel.moments[index].height )
+                        let leftColumnMoments = viewModel.moments.indices.filter { $0 % 2 == 0 }
+                        ForEach(leftColumnMoments, id: \.self) { index in
+                            let moment = viewModel.moments[index]
+                            ForEach(moment.images, id: \.image) { imageEntry in
+                                NavigationLink(destination: MomentListView(entry: moment)) {
+                                    CollageImageView(imageName: imageEntry.image, height: imageEntry.height)
+                                }
                             }
                         }
                     }
-                    
+
                     // Right Column
                     VStack(spacing: 10) {
-                        ForEach(viewModel.moments.indices, id: \.self) { index in
-                            if index % 2 != 0 {
-                                CollageImageView(imageName: viewModel.moments[index].image, height: viewModel.moments[index].height )
+                        let rightColumnMoments = viewModel.moments.indices.filter { $0 % 2 != 0 }
+                        ForEach(rightColumnMoments, id: \.self) { index in
+                            let moment = viewModel.moments[index]
+                            ForEach(moment.images, id: \.image) { imageEntry in
+                                NavigationLink(destination: MomentListView(entry: moment)) {
+                                    CollageImageView(imageName: imageEntry.image, height: imageEntry.height)
+                                }
                             }
                         }
                     }
@@ -32,9 +39,10 @@ struct MasonryGridView: View {
     }
 }
 
-
 struct MasonryGridViewPreview: PreviewProvider {
     static var previews: some View {
-        MasonryGridView()
+        NavigationView {
+            MasonryGridView()
+        }
     }
 }

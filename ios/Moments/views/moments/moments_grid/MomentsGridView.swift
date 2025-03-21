@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MomentsGridView: View {
-    @StateObject var viewModel = MomentsViewModel()
+    @StateObject var viewModel = MomentsListViewModel()
 
     let columns = [
         GridItem(.adaptive(minimum: 150, maximum: 180), spacing: 8)
@@ -25,7 +25,9 @@ struct MomentsGridView: View {
 
 struct MomentsGridView_Previews: PreviewProvider {
     static var previews: some View {
-        MomentsGridView()
-            .environmentObject(NavigationBarModel())
+        NavigationView{
+            MomentsGridView()
+                .environmentObject(NavigationBarModel())
+        }
     }
 }
