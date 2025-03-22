@@ -17,7 +17,7 @@ struct MomentsGridView: View {
                     .padding(.top, 80)
                     .padding([.leading, .trailing], 10)
                 
-                MomentsPicsView()
+                MomentsPicsView(viewModel: viewModel)
             }
         }
     }

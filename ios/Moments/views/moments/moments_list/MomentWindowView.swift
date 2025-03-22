@@ -1,10 +1,3 @@
-//
-//  MomentWindowView.swift
-//  Moments
-//
-//  Created by Donna on 3/20/25.
-//
-
 import SwiftUI
 
 struct MomentWindowView<Content: View>: View {
@@ -35,6 +28,7 @@ struct MomentWindowView<Content: View>: View {
                     }
                     .padding(.trailing, 8)
                 }
+                .frame(maxWidth: .infinity)
                 .frame(height: 30)
                 .background(headerColor)
                 .cornerRadius(5, corners: [.topLeft, .topRight])
@@ -47,6 +41,7 @@ struct MomentWindowView<Content: View>: View {
                 VStack {
                     content
                         .padding()
+                        .frame(maxWidth: .infinity)
                 }
                 .background(Color.white)
                 .cornerRadius(5, corners: [.bottomLeft, .bottomRight])

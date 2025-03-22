@@ -42,9 +42,7 @@ struct MomentListView: View {
 
             // Gratitude Window
             MomentWindowView(title: "gratitude",  headerColor: Color(red: 0.59, green: 0.80, blue: 0.94)) {
-                Text(entry.gratitude)
-                    .font(.custom("Cute Notes", size: 18))
-                    .padding()
+                GratitudeView(entry: entry)
             }
             .offset(x: 2, y: 220)
             .padding()

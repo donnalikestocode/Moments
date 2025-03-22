@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct MomentsPicsView: View {
+    @ObservedObject var viewModel: MomentsListViewModel
     
     var body: some View {
         ScrollView {
-            MasonryGridView()
+            MasonryGridView(viewModel: viewModel)
         }
         .background(
             ZStack {
@@ -38,6 +39,6 @@ struct MomentsPicsView: View {
 }
 
 #Preview {
-    MomentsPicsView()
+    MomentsPicsView(viewModel: MomentsListViewModel())
 }
 
