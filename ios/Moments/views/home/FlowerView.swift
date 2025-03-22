@@ -1,26 +1,32 @@
 import SwiftUI
 
 struct FlowerView: View {
-    var flower: Flower  // Takes a flower model as input
+    var flower: Flower
 
-    @State private var scale: CGFloat = 0.1  // Initial small scale for growth animation
+    @State private var scale: CGFloat = 0.1
+    @State private var opacity: Double = 0.0  // Start fully transparent
 
     var body: some View {
-        Image(flower.image)  // Display the flower image
+        Image(flower.image)
             .resizable()
             .scaledToFit()
-            .frame(width: 80, height: 80)  // Fixed size for now
-            .position(flower.position) 
-            .scaleEffect(scale)            // Apply the scaling effect
-            .opacity(scale)                // Fade in as it grows
+            .frame(width: 80, height: 80)
+            .position(flower.position)  // Directly set the position
+            .animation(nil, value: flower.position)  // Disable animation on position
+            .scaleEffect(scale)  // Only animate the scale
+            .opacity(opacity)    // Only animate the opacity
             .onAppear {
-                // Trigger the growth animation when the view appears
-                withAnimation(.spring(response: 0.6, dampingFraction: 0.5)) {
-                    scale = 1.0  // Animate to full size
+                // Animate scale and opacity without moving position
+                withAnimation(.easeInOut(duration: 0)) {
+                    scale = 1.0  // Smooth growth
+                    opacity = 1.0  // Fade in
                 }
             }
     }
 }
+
+
+
 
 struct FlowerView_Previews: PreviewProvider {
     static var previews: some View {

@@ -32,7 +32,7 @@ struct JournalWithThoughtBubble: View {
                     .opacity(isAnimating ? 0.9 : 1.0)
                     .animation(.easeInOut(duration: 3.0).repeatForever(autoreverses: true), value: opacity)
             }
-            .offset(x: 25, y: 10) 
+            .offset(x: 25, y: -250) 
             .onAppear {
                 isAnimating = true
             }
