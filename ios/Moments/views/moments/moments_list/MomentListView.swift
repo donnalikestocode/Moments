@@ -3,8 +3,7 @@ import SwiftUI
 struct MomentListView: View {
     var entry: MomentEntry
     
-    // Track the active (frontmost) window
-    @State private var activeWindow: String = "gratitude"  // Default front window
+    @State private var activeWindow: String = "gratitude" 
 
     var body: some View {
         ZStack {
@@ -24,7 +23,7 @@ struct MomentListView: View {
             }
             .offset(x: -10, y: -110)
             .padding()
-            .zIndex(activeWindow == "pics" ? 3 : 1) // Adjust zIndex based on active window
+            .zIndex(activeWindow == "pics" ? 3 : 1)
             .onTapGesture {
                 activeWindow = "pics"
             }
