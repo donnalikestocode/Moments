@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GardenView: View {
+    @EnvironmentObject var flowerViewModel: FlowerViewModel
     
     var body: some View {
         ZStack {
@@ -25,19 +26,33 @@ struct GardenView: View {
                     .padding(.top, 50)
                
                 Spacer()
-
+                
+                ZStack {
+                    ForEach(flowerViewModel.flowers) { flower in
+                        FlowerView(flower: flower)
+                    }
+                }
+                .frame(width: 300, height: 500)
+                
                 JournalWithThoughtBubble()
 
                 Spacer()
             }
         }
+        .onAppear {
+            flowerViewModel.startMidnightTimer()  // Start the midnight reset
+        }
+        .environmentObject(flowerViewModel)
     }
 }
 
 struct GardenView_Previews: PreviewProvider {
     static var previews: some View {
-        GardenView()
-            .environmentObject(NavigationBarModel())
+        let previewModel = FlowerViewModel(preview: true)  // Use the preview initializer
+
+        return GardenView()
+            .environmentObject(previewModel)  // Inject the flower model with mock data
+            .environmentObject(NavigationBarModel())  // Inject the navigation model
     }
 }
 

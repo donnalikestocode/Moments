@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var navigationState: NavigationBarModel
+    @StateObject var flowerViewModel = FlowerViewModel()
 
     var body: some View {
         NavigationView {
@@ -9,8 +10,10 @@ struct ContentView: View {
                 switch navigationState.currentScreen {
                 case .garden:
                     GardenView()
+                        .environmentObject(flowerViewModel)
                 case .journal:
                     JournalEntryView()
+                        .environmentObject(flowerViewModel)
                 case .moments:
                     MomentsGridView()
                 }
@@ -25,6 +28,7 @@ struct ContentView: View {
             }
             .ignoresSafeArea()
         }
+        .environmentObject(flowerViewModel) 
     }
 }
 

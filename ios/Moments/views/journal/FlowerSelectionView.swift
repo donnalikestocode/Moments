@@ -12,7 +12,7 @@ struct FlowerSelectionView: View {
                     Text("What would you like to grow in your garden today?")
                         .font(.custom("Cute Notes", size: 18))
                         .padding(.bottom, 10)
-                    Image("roses")
+                    Image("rose")
                         .resizable()
                         .scaledToFit()
                         .frame(height: 100)

@@ -10,7 +10,7 @@ struct FlowerView: View {
             .resizable()
             .scaledToFit()
             .frame(width: 80, height: 80)  // Fixed size for now
-            .position(flower.position)     // Position based on the flower data
+            .position(flower.position) 
             .scaleEffect(scale)            // Apply the scaling effect
             .opacity(scale)                // Fade in as it grows
             .onAppear {

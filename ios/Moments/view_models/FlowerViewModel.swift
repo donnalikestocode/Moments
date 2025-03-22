@@ -38,3 +38,15 @@ class FlowerViewModel: ObservableObject {
         RunLoop.main.add(timer, forMode: .common)
     }
 }
+
+extension FlowerViewModel {
+    // Preview-specific initializer
+    convenience init(preview: Bool) {
+        self.init()  // Call the default initializer
+
+        if preview {
+            print("Initializing FlowerViewModel for Preview")
+            addFlower(type: "rose", image: "rose")  // Add mock data for preview
+        }
+    }
+}

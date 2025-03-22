@@ -2,6 +2,7 @@ import SwiftUI
 
 struct JournalEntryView: View {
     @EnvironmentObject var navigationState: NavigationBarModel
+    @EnvironmentObject var flowerViewModel: FlowerViewModel
     
     @State private var gratitudeText: String = ""
     @State private var photos: [UIImage] = []
@@ -26,6 +27,7 @@ struct JournalEntryView: View {
                 case 3:
                     FlowerSelectionView(
                         onSave: {print("Gratitude saved: \(gratitudeText)")
+                            flowerViewModel.addFlower(type: "rose", image: "rose")
                             navigationState.navigateTo(.garden)
                             currentScreen = 1 
                         },
