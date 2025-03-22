@@ -22,10 +22,10 @@ struct JournalWithThoughtBubble: View {
                  .blur(radius: 15)
                  .offset(x: 25, y: 10)
             
-            NavigationLink(destination: JournalEntryView()
-                .onAppear {
-                    navigationState.showNavBar = false
-                }) {
+            Button(action: {
+                navigationState.navigateTo(.journal)  // Navigate to JournalEntryView
+                navigationState.showNavBar = false
+            }) {
                 Image("thoughtBubble")
                     .resizable()
                     .frame(width: 60, height: 60)

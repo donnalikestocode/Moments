@@ -2,6 +2,7 @@ import SwiftUI
 
 struct JournalEntryView: View {
     @EnvironmentObject var navigationState: NavigationBarModel
+    
     @State private var gratitudeText: String = ""
     @State private var photos: [UIImage] = []
     @State private var currentScreen: Int = 1 
@@ -17,17 +18,23 @@ struct JournalEntryView: View {
                 case 1:
                     TodayQuoteView(onNext: { currentScreen = 2 })
                 case 2:
-                    PhotosAndGratitudeView(gratitudeText: $gratitudeText, onNext: { currentScreen = 3 })
+                    PhotosAndGratitudeView(
+                        gratitudeText: $gratitudeText,
+                        onNext: { currentScreen = 3 },
+                        onBack: {currentScreen = 1}
+                    )
                 case 3:
-                    FlowerSelectionView(onSave: {
-                        print("Gratitude saved: \(gratitudeText)")
-                        navigationState.showNavBar = true
-                    })
+                    FlowerSelectionView(
+                        onSave: {print("Gratitude saved: \(gratitudeText)")
+                            navigationState.navigateTo(.garden)
+                            currentScreen = 1 
+                        },
+                        onBack: {currentScreen = 2})
                 default:
                     EmptyView()
                 }
             }
-            .padding()
+//            .padding()
         }
         .onAppear {
             navigationState.showNavBar = false
@@ -41,6 +48,6 @@ struct JournalEntryView: View {
 struct JournalEntryView_Previews: PreviewProvider {
     static var previews: some View {
         JournalEntryView()
-            .environmentObject(NavigationBarModel())  // Mock environment object
+            .environmentObject(NavigationBarModel()) 
     }
 }

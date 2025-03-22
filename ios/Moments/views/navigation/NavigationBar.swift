@@ -18,7 +18,7 @@ struct NavigationBar: View {
                 // Garden Tab
                 Button(action: {
                     selectedTab = "garden"
-                    navigationState.showNavBar = true
+                    navigationState.navigateTo(.garden)
                 }) {
                     Image("gardenTab")
                         .resizable()
@@ -26,15 +26,15 @@ struct NavigationBar: View {
                         .offset(y: selectedTab == "garden" ? -20 : 0)
                 }
 
-                // Journal Tab
+                // Moments Tab
                 Button(action: {
-                    selectedTab = "journal"
-                    navigationState.showNavBar = true
+                    selectedTab = "moments"
+                    navigationState.navigateTo(.moments)
                 }) {
-                    Image("journalTab")
+                    Image("momentsTab")
                         .resizable()
                         .frame(width: 100, height: 100)
-                        .offset(y: selectedTab == "journal" ? -20 : 0)
+                        .offset(y: selectedTab == "moments" ? -20 : 0)
                 }
             }
             .padding(.bottom, 20) 

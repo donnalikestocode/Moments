@@ -16,6 +16,7 @@ struct TodayQuoteView: View {
                     .frame(maxWidth: .infinity)
                     .background(Color(.systemGray4))
                     .cornerRadius(10)
+                    .font(.custom("Cute Notes", size: 18))
             }
             .padding()
         }
