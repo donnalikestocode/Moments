@@ -9,12 +9,18 @@ import SwiftUI
 
 struct AnimatedBackgroundView: View {
     @State private var frameIndex = 1
-    private let totalFrames = 3
-    
-    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect() 
+    private let totalFrames: Int
+    private let imageName: String
+
+    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+
+    init(imageName: String, totalFrames: Int) {
+        self.imageName = imageName
+        self.totalFrames = totalFrames
+    }
 
     var body: some View {
-        Image("background\(frameIndex)")
+        Image("\(imageName)\(frameIndex)")
             .resizable()
             .aspectRatio(contentMode: .fill)
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -24,4 +30,5 @@ struct AnimatedBackgroundView: View {
             }
     }
 }
+
 

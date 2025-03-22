@@ -12,7 +12,11 @@ struct GardenView: View {
     
     var body: some View {
         ZStack {
-            AnimatedBackgroundView()
+            if flowerViewModel.hasFlowers() {
+                AnimatedBackgroundView(imageName: "backgroundAfter", totalFrames: 3)
+            } else {
+                AnimatedBackgroundView(imageName: "backgroundBefore", totalFrames: 3)
+            }
 
             VStack {
 
@@ -34,7 +38,9 @@ struct GardenView: View {
                 }
                 .frame(width: 300, height: 500)
                 
-                JournalWithThoughtBubble()
+                if !flowerViewModel.hasFlowers() {
+                    JournalWithThoughtBubble()
+                }
 
                 Spacer()
             }
@@ -42,7 +48,6 @@ struct GardenView: View {
         .onAppear {
             flowerViewModel.startMidnightTimer()  // Start the midnight reset
         }
-        .environmentObject(flowerViewModel)
     }
 }
 
