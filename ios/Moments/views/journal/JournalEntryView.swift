@@ -25,13 +25,16 @@ struct JournalEntryView: View {
                         onBack: {currentScreen = 1}
                     )
                 case 3:
-                    FlowerSelectionView(
-                        onSave: {print("Gratitude saved: \(gratitudeText)")
-                            flowerViewModel.addFlower(type: "rose", image: "rose")
+                    let flowerSelectionViewModel = FlowerSelectionViewModel(
+                        onSave: { flower in
+                            print("Gratitude saved: \(gratitudeText)")
+                            flowerViewModel.addFlower(type: flower.type, image: flower.image)
                             navigationState.navigateTo(.garden)
-                            currentScreen = 1 
+                            currentScreen = 1
                         },
-                        onBack: {currentScreen = 2})
+                        onBack: { currentScreen = 2 }
+                    )
+                    FlowerSelectionView(viewModel: flowerSelectionViewModel)
                 default:
                     EmptyView()
                 }
@@ -50,6 +53,7 @@ struct JournalEntryView: View {
 struct JournalEntryView_Previews: PreviewProvider {
     static var previews: some View {
         JournalEntryView()
-            .environmentObject(NavigationBarModel()) 
+            .environmentObject(NavigationBarModel())
+            .environmentObject(FlowerViewModel())
     }
 }

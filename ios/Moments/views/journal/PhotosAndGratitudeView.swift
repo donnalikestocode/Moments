@@ -15,7 +15,7 @@ struct PhotosAndGratitudeView: View {
         ScrollView {
             
             Spacer()
-                .padding(.bottom, 50)
+                .padding(.bottom, 100)
             
             Text("What are you grateful for today?")
                 .font(.custom("Cute Notes", size: 18))

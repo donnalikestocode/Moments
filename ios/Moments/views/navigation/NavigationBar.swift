@@ -23,7 +23,7 @@ struct NavigationBar: View {
                     Image("gardenTab")
                         .resizable()
                         .frame(width: 100, height: 100)
-                        .offset(y: selectedTab == "garden" ? -20 : 0)
+                        .offset(y: selectedTab == "garden" ? -10 : 0)
                 }
 
                 // Moments Tab
@@ -34,7 +34,7 @@ struct NavigationBar: View {
                     Image("momentsTab")
                         .resizable()
                         .frame(width: 100, height: 100)
-                        .offset(y: selectedTab == "moments" ? -20 : 0)
+                        .offset(y: selectedTab == "moments" ? -10 : 0)
                 }
             }
             .padding(.bottom, 20) 

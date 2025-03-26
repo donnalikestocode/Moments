@@ -6,7 +6,7 @@ struct FlowerQuoteView: View {
     var body: some View {
         VStack(spacing: 10) {
             // Flower of the day
-            Text("🌸 Today's Flower: \(entry.flower)")
+            Text("🌸 You grew: \(entry.flower)")
                 .font(.custom("Cute Notes", size: 18))
                 .padding(.bottom, 5)
             

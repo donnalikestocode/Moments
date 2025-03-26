@@ -12,11 +12,12 @@ struct GardenView: View {
     
     var body: some View {
         ZStack {
-            if flowerViewModel.hasFlowers() {
-                AnimatedBackgroundView(imageName: "backgroundAfter", totalFrames: 3)
-            } else {
-                AnimatedBackgroundView(imageName: "backgroundBefore", totalFrames: 3)
-            }
+            AnimatedBackgroundView(imageName: "backgroundBefore", totalFrames: 3)
+//            if flowerViewModel.hasFlowers() {
+//                AnimatedBackgroundView(imageName: "backgroundAfter", totalFrames: 3)
+//            } else {
+//                AnimatedBackgroundView(imageName: "backgroundBefore", totalFrames: 3)
+//            }
 
             VStack {
 
@@ -27,7 +28,7 @@ struct GardenView: View {
                     .background(Color(red: 153/255, green: 205/255, blue: 93/255).opacity(0.15))
                     .cornerRadius(10)
                     .shadow(radius: 2)
-                    .padding(.top, 50)
+                    .padding(.top, 70)
                
                 Spacer()
                 
@@ -38,9 +39,10 @@ struct GardenView: View {
                 }
                 .frame(width: 300, height: 500)
                 
-                if !flowerViewModel.hasFlowers() {
-                    JournalWithThoughtBubble()
-                }
+//                if !flowerViewModel.hasFlowers() {
+//                    JournalWithThoughtBubble()
+//                }
+                JournalWithThoughtBubble()
 
                 Spacer()
             }

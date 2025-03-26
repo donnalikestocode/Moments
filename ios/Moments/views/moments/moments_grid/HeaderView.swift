@@ -17,7 +17,7 @@ struct HeaderView: View {
                 bottomTrailingRadius: 0,
                 topTrailingRadius: 10
             )
-            .fill(Color(red: 153/255, green: 205/255, blue: 93/255))
+            .fill(Color(red: 105 / 255, green: 155 / 255, blue: 114 / 255))
             .frame(height: 50)
             .overlay(
                 UnevenRoundedRectangle(
@@ -32,7 +32,7 @@ struct HeaderView: View {
             HStack {
                 Text("my moments <3")
                     .font(.custom("Cute Notes", size: 20))
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .padding(.leading, 20)
                 Spacer()
                 HStack(spacing: 5) {

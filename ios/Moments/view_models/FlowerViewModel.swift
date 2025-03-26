@@ -2,23 +2,34 @@ import SwiftUI
 
 class FlowerViewModel: ObservableObject {
     @Published var flowers: [Flower] = []
+    private var nextPositionIndex = 0  // Track the position to replace
 
-    func addFlower(type: String, image: String) {
-        if let firstFlower = flowers.first, firstFlower.type == type {
-            return
-        }
-        
-        flowers.removeAll()
+     func addFlower(type: String, image: String) {
+         // Calculate the position based on the next position index
+         let position = FlowerPositionManager.position(for: nextPositionIndex)
 
-        for index in 0..<FlowerPositionManager.positions.count {
-            let position = FlowerPositionManager.position(for: index)
-            let newFlower = Flower(type: type, image: image, position: position, date: Date())
-            flowers.append(newFlower)
-        }
-    }
+         // Create a new flower
+         let newFlower = Flower(type: type, image: image, position: position, date: Date())
+
+         // Check if a flower already exists at the calculated position
+         if nextPositionIndex < flowers.count {
+             // Replace the existing flower at that position
+             flowers[nextPositionIndex] = newFlower
+             print("Replaced flower at position \(nextPositionIndex) - Total flowers: \(flowers.count)")
+         } else {
+             // Append a new flower
+             flowers.append(newFlower)
+             print("Added new flower at position \(nextPositionIndex) - Total flowers: \(flowers.count)")
+         }
+
+         // Update the position index for the next flower (circular)
+         nextPositionIndex = (nextPositionIndex + 1) % FlowerPositionManager.positions.count
+     }
+
 
     func resetFlowers() {
         flowers.removeAll()
+        nextPositionIndex = 0
     }
 
     func hasFlowers() -> Bool {
