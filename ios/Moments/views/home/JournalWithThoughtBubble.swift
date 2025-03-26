@@ -20,7 +20,7 @@ struct JournalWithThoughtBubble: View {
                 .fill(Color.white.opacity(0.3))
                  .frame(width: 80, height: 80)
                  .blur(radius: 15)
-                 .offset(x: 25, y: 10)
+                 .offset(x: 25, y: -250)
             
             Button(action: {
                 navigationState.navigateTo(.journal)  // Navigate to JournalEntryView
@@ -37,5 +37,15 @@ struct JournalWithThoughtBubble: View {
                 isAnimating = true
             }
         }
+    }
+}
+
+struct JournalWithThoughtBubble_Previews: PreviewProvider {
+    static var previews: some View {
+        let previewModel = FlowerViewModel(preview: false)  // Use the preview initializer
+
+        return GardenView()
+            .environmentObject(previewModel)  // Inject the flower model with mock data
+            .environmentObject(NavigationBarModel())  // Inject the navigation model
     }
 }
