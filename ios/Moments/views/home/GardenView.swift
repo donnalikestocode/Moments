@@ -13,6 +13,7 @@ struct GardenView: View {
     var body: some View {
         ZStack {
             AnimatedBackgroundView(imageName: "backgroundBefore", totalFrames: 3)
+                .ignoresSafeArea()
 //            if flowerViewModel.hasFlowers() {
 //                AnimatedBackgroundView(imageName: "backgroundAfter", totalFrames: 3)
 //            } else {
@@ -47,6 +48,7 @@ struct GardenView: View {
                 Spacer()
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onAppear {
             flowerViewModel.startMidnightTimer()  // Start the midnight reset
         }

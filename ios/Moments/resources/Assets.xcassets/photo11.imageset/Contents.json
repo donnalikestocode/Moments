@@ -2,15 +2,15 @@
   "images" : [
     {
       "filename" : "9CB769D7-E0CC-468C-B6FE-1D20913C1B44_1_105_c.jpeg",
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "3x"
     }
   ],
